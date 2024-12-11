@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+ 
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">📊 Dashboard</div>
+      <ul>
+        <li><a href="#" class="active"> Home</a></li>
+       
+        <li><a href="#"> Posts</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Top Bar -->
+      <div class="topbar">
+        <input type="text" placeholder="Search for anything...">
+        <div class="date-profile">
+          <span class="date" id="current-date"></span>
+          <div class="profile">
+            <img src="https://images.unsplash.com/photo-1733721868451-a3e51216c42e?q=80&w=2565&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile">
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- Welcome Section -->
+      <section class="welcome">
+        <h1>Welcome Back! 👋</h1>
+        <p>Good evening!</p>
+        <div class="user-info">
+          <div class="user-card">
+            <h3>Aditya</h3>
+            <p>Writer/Author</p>
+          </div>
+          <div class="stats">
+            <span id="total-posts">154</span>
+            <p>Total Posts</p>
+          </div>
+          <div class="stats">
+            <span id="subscribers">23K</span>
+            <p>Followers</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Overview Cards -->
+      <section class="cards">
+        <div class="card">
+          <i class="fas fa-file-alt"></i>
+          <h3>Total Posts</h3>
+          <p><b id="total-posts-card">154</b></p>
+        </div>
+        <div class="card">
+          <i class="fas fa-book"></i>
+          <h3>Categories</h3>
+          <p><b>3</b></p>
+        </div>
+        <div class="card">
+          <i class="fas fa-comments"></i>
+          <h3>Comments</h3>
+          <p><b id="comments">34,267</b></p>
+        </div>
+        <div class="card">
+          <i class="fas fa-heart"></i>
+          <h3>Total Likes</h3>
+          <p><b id="likes">65.26K</b></p>
+        </div>
+      </section>
+
+      <!-- Analytics and Recent Blogs -->
+      <section class="content">
+        <div class="analytics">
+          <h3>Visitors</h3>
+        
+        </div>
+        <div class="recent-blogs">
+          <div class="blog-header">
+            <h3>Recent Blogs</h3>
+            <button class="add-btn">+ Add New</button>
+          </div>
+          <ul>
+            <li><a href="#">Clever Ways to Celebrate Christmas... <span>325 Comments</span></a></li>
+            <li><a href="#">Setting Intentions Instead of... <span>25 Comments</span></a></li>
+            <li><a href="#">Physical Development Activities for Kids... <span>33 Comments</span></a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="dashboard..js"></script>
+</body>
+</html>
