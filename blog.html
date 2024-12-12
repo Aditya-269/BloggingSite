@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog</title>
+  <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Write Your Blog</h1>
+    </div>
+
+    <div class="add-blog">
+      <input type="text" id="blog-title" placeholder="Enter blog title...">
+      <textarea id="blog-body" placeholder="Enter blog content..."></textarea>
+    
+      <button onclick="addBlog()">Add Blog</button>
+    </div>
+
+    <div id="blog-list"></div>
+  </div>
+
+  <script src="blog.js"></script>
+</body>
+</html>
