@@ -1,4 +1,4 @@
-let blogs = JSON.parse(localStorage.getItem('blogs'));
+let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
 
 function display() {
   const blogList = document.getElementById('blog-list');
