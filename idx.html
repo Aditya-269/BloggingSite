@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div id="container">
+        <h2>Form Registration</h2>
+        
+        <!-- Sign Up -->
+        <div id="signup" class="form-container">
+            <form id="signupForm">
+                <h1>Sign Up Page</h1>
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Username" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit" id="signupbtn">Sign Up</button>
+                <p>Already have an account? <a id="login_btn" href="#">Login</a></p>
+            </form>
+        </div>
+
+        <!-- Login -->
+        <div id="login" class="form-container" style="display: none;">
+            <form id="loginForm">
+                <h1>Login Page</h1>
+                <label for="email-login">Email</label>
+                <input type="email" id="email-login" placeholder="Email" required>
+                <label for="password-login">Password</label>
+                <input type="password" id="password-login" placeholder="Password" required>
+                <button type="submit" id="loginbtn">Login</button>
+                <p>Create an account? <a href="#" id="signup_btn">Sign Up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
