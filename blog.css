@@ -74,7 +74,6 @@ body {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .add-blog button:hover {
@@ -91,7 +90,6 @@ body {
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   background: #fff;
-  transition: box-shadow 0.3s ease;
   box-sizing: border-box;
 }
 .blog:hover {
@@ -125,7 +123,6 @@ body {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .blog-actions button.delete {
@@ -164,7 +161,6 @@ body {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .blog-comments button:hover {
