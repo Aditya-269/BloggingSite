@@ -39,7 +39,6 @@ function addBlog() {
     blogs.push({ title, body, likes: 0, comments: [] });
     document.getElementById('blog-title').value = '';
     document.getElementById('blog-body').value = '';
-    document.getElementById('blog-image').value = '';
     display();
   } else {
     alert('Please enter a title and content.');

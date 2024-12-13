@@ -39,6 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
       const updatedComments = updatedBlogs.reduce((sum, blog) => sum + blog.comments.length, 0);
       document.getElementById('comments').textContent = `${updatedComments} Comments`;
-    }, 5000); 
+    }, 2000); 
   });
   
