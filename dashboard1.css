@@ -1,0 +1,223 @@
+/* General Styling */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(35deg, #f0f4f8, #d9e4f1);
+    color: #333;
+    line-height: 1.7;
+    display: flex;
+    height: 100vh;
+  }
+  
+  .dashboard {
+    display: flex;
+    width: 100%;
+  }
+  
+  .sidebar {
+    width: 260px;
+    border-right: 1px solid #d0d7e2;
+    color: #333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar .logo {
+    font-size: 29px;
+    font-weight: 800;
+    color: #8ae3d5;
+    margin-bottom: 40px;
+    letter-spacing: 1.2px;
+    text-align: center;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li a {
+    text-decoration: none;
+    display: block;
+    padding: 14px 20px;
+    border-radius: 15px;
+    color: #333;
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .sidebar li a.active {
+    background: #1d4ed8;
+    color: white;
+  }
+  
+  .sidebar li a:hover {
+    background: #e0e7ff;
+    color: #1d4ed8;
+  }
+  
+  main {
+    flex-grow: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background: #f8fafc;
+    border-radius: 12px;
+  }
+  
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .topbar input {
+    padding: 12px;
+    width: 100%;
+    max-width: 360px;
+    border-radius: 30px;
+    border: 1px solid #cbd5e1;
+    transition: border-color 0.3s ease;
+  }
+  
+  .topbar input:focus {
+    border-color: #1d4ed8;
+    outline: none;
+  }
+  
+  .date-profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .date-profile .profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+  }
+  
+  .welcome {
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff, #f1f5f9);
+  }
+  
+  .user-info {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .user-card,
+  .stats {
+    padding: 30px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #f8fafc, #e8edf3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+  }
+  
+  .card {
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    background: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card i {
+    font-size: 38px;
+    margin-bottom: 12px;
+    color: #1d4ed8;
+  }
+  
+  .card h3 {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+  }
+  
+  .analytics,
+  .recent-blogs {
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+  }
+  
+  .blog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .blog-header .add-btn {
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .blog-header .add-btn:hover {
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    transform: translateY(-2px);
+  }
+  
+  .recent-blogs ul {
+    padding: 0;
+    list-style: none;
+  }
+  
+  .recent-blogs li {
+    margin-bottom: 15px;
+  }
+  
+  .recent-blogs li a {
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #4b5563;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .recent-blogs li a:hover {
+    background-color: #e5e7eb;
+    transform: translateY(-2px);
+  }
+  1
