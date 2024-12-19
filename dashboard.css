@@ -1,9 +1,17 @@
-body {
+/* General Styles */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: 'Inter', sans-serif;
   color: #333;
   display: flex;
   height: 100vh;
+  background: #f9f9f9;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .dashboard {
@@ -13,11 +21,12 @@ body {
 
 .sidebar {
   width: 260px;
+  background-color: #fff;
   border-right: 1px solid #d0d7e2;
-  color: #333;
-  padding: 20px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar .logo {
@@ -43,10 +52,12 @@ body {
   margin-bottom: 12px;
   font-size: 16px;
   font-weight: 500;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
+.sidebar li a:hover,
 .sidebar li a.active {
-  background: #1d4ed8;
+  background-color: #1d4ed8;
   color: white;
 }
 
@@ -71,6 +82,11 @@ main {
   max-width: 360px;
   border-radius: 30px;
   border: 1px solid #cbd5e1;
+  transition: border-color 0.3s ease;
+}
+
+.topbar input:focus {
+  border-color: #1d4ed8;
 }
 
 .date-profile {
@@ -91,6 +107,13 @@ main {
   padding: 30px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
   text-align: center;
+  background-color: #fff;
+}
+
+.welcome h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 15px;
 }
 
 .user-info {
@@ -119,18 +142,18 @@ main {
   padding: 25px;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
   text-align: center;
-}
-
-.card i {
-  font-size: 38px;
-  margin-bottom: 12px;
-  color: #1d4ed8;
+  background-color: #fff;
 }
 
 .card h3 {
   font-size: 18px;
   margin: 0;
   color: #333;
+}
+
+.card b {
+  font-size: 22px;
+  color: #1d4ed8;
 }
 
 .content {
@@ -144,6 +167,7 @@ main {
   border-radius: 25px;
   padding: 30px;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
 }
 
 .blog-header {
@@ -151,15 +175,6 @@ main {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-}
-
-.blog-header .add-btn {
-  padding: 14px 20px;
-  background: #1d4ed8;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
 }
 
 .recent-blogs ul {
@@ -180,4 +195,39 @@ main {
   padding: 15px;
   border-radius: 15px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.recent-blogs li a:hover {
+  background-color: #f0f7ff;
+  transform: translateX(4px);
+}
+
+.recent-blogs li span {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+/* Footer */
+footer {
+  background: #fff;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  border-top: 1px solid #e6e6e6;
+  margin-top: 3rem;
+}
+
+footer p {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+footer p a {
+  color: #1d4ed8;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer p a:hover {
+  color: #0056a6;
 }

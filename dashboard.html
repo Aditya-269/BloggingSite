@@ -8,13 +8,11 @@
 </head>
 <body>
   <div class="dashboard">
-
     <aside class="sidebar">
       <div class="logo">📊 Dashboard</div>
       <ul>
-        <li><a href="#" class="active">Home</a></li>
+        <li><a href="main.html" class="active">Home</a></li>
         <li><a href="blog.html">Add Your Posts</a></li>
-        <li><a href="#">Categories</a></li>
         <li><a href="#">Settings</a></li>
       </ul>
     </aside>
@@ -25,25 +23,26 @@
         <div class="date-profile">
           <span class="date" id="current-date"></span>
           <div class="profile">
-            <img src="https://via.placeholder.com/50" alt="Profile">
+            <img src="https://images.unsplash.com/photo-1731636117974-5eab41e59504?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMnx8fGVufDB8fHx8fA%3D%3D" alt="Profile Picture"> 
           </div>
         </div>
       </div>
 
       <section class="welcome">
         <h1>Welcome Back! 👋</h1>
-        <p>Good evening!</p>
         <div class="user-info">
           <div class="user-card">
-            <h3>Aditya</h3>
+            <h3 id="username">User</h3>
             <p>Writer/Author</p>
           </div>
           <div class="stats">
-            <span id="total-posts">154</span>
+            <span id="total-posts">0</span>
             <p>Total Posts</p>
           </div>
           <div class="stats">
-            <span id="followers">23K</span>
+          
+            <span id="followers">23K</span>  
+            <p>followers</p>
           </div>
         </div>
       </section>
@@ -51,15 +50,15 @@
       <section class="cards">
         <div class="card">
           <h3>Total Posts</h3>
-          <p><b id="total-posts-card">154</b></p>
+          <p><b id="total-posts-card">0</b></p>
         </div>
         <div class="card">
           <h3>Comments</h3>
-          <p><b id="comments">34,267</b></p>
+          <p><b id="comments">0</b></p>
         </div>
         <div class="card">
           <h3>Total Likes</h3>
-          <p><b id="likes">65.26K</b></p>
+          <p><b id="likes">0</b></p>
         </div>
       </section>
 
@@ -72,9 +71,7 @@
             <h3>Recent Blogs</h3>
           </div>
           <ul id="blogs-list">
-            <li><a href="#">Clever Ways to Celebrate Christmas... <span>325 Comments</span></a></li>
-            <li><a href="#">Setting Intentions Instead of... <span>25 Comments</span></a></li>
-            <li><a href="#">Physical Development Activities for Kids... <span>33 Comments</span></a></li>
+           
           </ul>
         </div>
       </section>

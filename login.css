@@ -99,18 +99,3 @@ p {
     color: #555;
 }
 
-@media (max-width: 480px) {
-    .form-container {
-        width: 90%; /* Adjust width for small screens */
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-        font-size: 0.9rem; /* Slightly smaller font size */
-    }
-
-    button {
-        font-size: 0.9rem;
-    }
-}

@@ -3,42 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <link rel="stylesheet" href="./styles.css">
+    <title>Login / Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 400px;
+            padding: 30px;
+            text-align: center;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .toggle-form {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        .toggle-form a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .toggle-form a:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: -8px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-    <div id="container">
-        <h2>Form Registration</h2>
-        
-        <!-- Sign Up -->
-        <div id="signup" class="form-container">
-            <form id="signupForm">
-                <h1>Sign Up Page</h1>
-                <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Username" required>
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Email" required>
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit" id="signupbtn">Sign Up</button>
-                <p>Already have an account? <a id="login_btn" href="#">Login</a></p>
+    <div class="container">
+        <div id="loginContainer">
+            <form id="loginForm">
+                <h2>Login</h2>
+                <input type="email" id="email-login" placeholder="Email" required>
+                <input type="password" id="password-login" placeholder="Password" required>
+                <div id="login-error" class="error"></div>
+                <button type="submit">Login</button>
+                <div class="toggle-form">
+                    Don't have an account? <a href="#" id="showSignup">Sign Up</a>
+                </div>
             </form>
         </div>
 
-        <!-- Login -->
-        <div id="login" class="form-container" style="display: none;">
-            <form id="loginForm">
-                <h1>Login Page</h1>
-                <label for="email-login">Email</label>
-                <input type="email" id="email-login" placeholder="Email" required>
-                <label for="password-login">Password</label>
-                <input type="password" id="password-login" placeholder="Password" required>
-                <button type="submit" id="loginbtn">Login</button>
-                <p>Create an account? <a href="#" id="signup_btn">Sign Up</a></p>
+        <div id="signupContainer" style="display: none;">
+            <form id="signupForm">
+                <h2>Sign Up</h2>
+                <input type="text" id="username" placeholder="Username" required>
+                <div id="username-error" class="error"></div>
+                
+                <input type="email" id="email" placeholder="Email" required>
+                <div id="email-error" class="error"></div>
+                
+                <input type="password" id="password" placeholder="Password" required>
+                <div id="password-error" class="error"></div>
+                
+                <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                <div id="confirm-password-error" class="error"></div>
+                
+                <button type="submit">Sign Up</button>
+                <div class="toggle-form">
+                    Already have an account? <a href="#" id="showLogin">Login</a>
+                </div>
             </form>
         </div>
     </div>
 
-    <script src="./script.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>
