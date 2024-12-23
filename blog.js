@@ -1,85 +1,118 @@
-   // Initialize Quill editor
-   const quill = new Quill("#blog-body", {
-    modules: { toolbar: true },
-    theme: "snow",
+// Initialize the Quill editor
+let quill;
+
+// Wait for DOM to be fully loaded before initializing Quill
+document.addEventListener('DOMContentLoaded', () => {
+    quill = new Quill("#blog-body", {
+        modules: { toolbar: true },
+        theme: "snow",
+    });
 });
 
-// Utility functions
-const getBlogs = () => JSON.parse(localStorage.getItem('blogs')) || [];
-const saveBlogs = (blogs) => localStorage.setItem('blogs', JSON.stringify(blogs));
-const getCurrentUser = () => JSON.parse(localStorage.getItem('currentUser')) || null;
+// Utility functions to manage blog posts
+const getBlogsFromStorage = () => JSON.parse(localStorage.getItem('blogs')) || [];
+const saveBlogsToStorage = (blogs) => localStorage.setItem('blogs', JSON.stringify(blogs));
+const getCurrentUserFromStorage = () => JSON.parse(localStorage.getItem('currentUser')) || null;
 
-// Function to reset the form after submission
-function resetForm() {
+// Reset the form after submission
+function resetPostForm() {
     document.getElementById('postForm').reset();
     document.getElementById('editIndex').value = '';
-    quill.setContents([]); // Reset Quill editor content
+    if (quill) {
+        quill.setContents([]); // Clear Quill editor content
+    }
 }
 
-// Function to pre-fill the form if editing a post
-function loadEditData() {
+// Load existing data for editing
+function populateEditForm() {
     const params = new URLSearchParams(window.location.search);
-    const editIndex = params.get('editIndex');
-    const currentUser = getCurrentUser();
+    const editIndex = params.get('editIndex'); // Get the edit index from the URL
+    const currentUser = getCurrentUserFromStorage();
 
+    // Debug logs
+    console.log('Current User:', currentUser);
+    console.log('Edit Index:', editIndex);
+
+    // Redirect if user is not logged in
     if (!currentUser) {
-        alert('User not logged in.');
-        window.location.href = 'login.html'; // Redirect to login page
+        alert('User not logged in. Please log in to edit posts.');
+        window.location.href = 'login.html';
         return;
     }
 
     document.getElementById('userId').value = currentUser.id; // Set user ID in hidden field
 
+    // Only populate form if we're editing (editIndex exists)
     if (editIndex !== null) {
-        const blogs = getBlogs();
+        const blogs = getBlogsFromStorage();
         const post = blogs[editIndex];
 
-        if (post && post.userId === currentUser.id) { // Ensure user can only edit their posts
+        // Debug log for posts
+        console.log('Post Data:', post);
+
+        // Check if the post exists and belongs to the current user
+        if (post && post.userId === currentUser.id) {
             document.getElementById('title').value = post.title;
             document.getElementById('image').value = post.image;
             document.getElementById('description').value = post.description;
-            quill.root.innerHTML = post.body; // Set Quill editor content
-            document.getElementById('editIndex').value = editIndex; // Store edit index in hidden input
-            document.getElementById('submitBtn').innerText = 'Update Post'; // Change button text
+            
+            // Wait for Quill to be initialized before setting content
+            const setQuillContent = () => {
+                if (quill) {
+                    quill.root.innerHTML = post.body;
+                } else {
+                    // If Quill isn't ready yet, try again in 100ms
+                    setTimeout(setQuillContent, 100);
+                }
+            };
+            setQuillContent();
+            
+            document.getElementById('editIndex').value = editIndex;
+            document.getElementById('submitBtn').innerText = 'Update Post';
         } else {
-            alert('You are not authorized to edit this post.');
-            window.location.href = 'main.html'; // Redirect unauthorized user
+            alert('Unauthorized access: You can only edit your own posts.');
+            window.location.href = 'main.html';
         }
+    } else {
+        // New post - ensure form is clear
+        resetPostForm();
+        document.getElementById('submitBtn').innerText = 'Create Post';
     }
 }
 
-// Add/Edit Post Handler
+// Handle post submission for adding or editing
 document.getElementById('postForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
     const title = document.getElementById('title').value.trim();
     const image = document.getElementById('image').value.trim();
     const description = document.getElementById('description').value.trim();
-    const body = quill.root.innerHTML; // Get Quill editor content
+    const body = quill ? quill.root.innerHTML : ''; // Get content from Quill editor
     const editIndex = document.getElementById('editIndex').value;
     const userId = document.getElementById('userId').value;
 
+    // Validate form inputs
     if (!title || !description || !body || !userId) {
-        alert('Please fill all required fields.');
+        alert('All fields are required. Please fill in all fields.');
         return;
     }
 
-    const blogs = getBlogs();
+    const blogs = getBlogsFromStorage();
 
-    if (editIndex) {
-        // Edit existing post
+    if (editIndex !== '') {
+        // Update existing post
         blogs[editIndex] = { userId, title, image, description, body };
         alert('Post updated successfully!');
     } else {
-        // Add new post
+        // Create a new post
         blogs.push({ userId, title, image, description, body });
         alert('Post added successfully!');
     }
 
-    saveBlogs(blogs);
-    resetForm();
-    window.location.href = 'main.html'; // Redirect to main page after save
+    saveBlogsToStorage(blogs);
+    resetPostForm();
+    window.location.href = 'main.html';
 });
 
-// Load edit data on page load
-window.onload = loadEditData;
+// Initialize the form when the page loads
+window.onload = populateEditForm;

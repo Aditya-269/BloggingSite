@@ -8,18 +8,35 @@
 </head>
 <body>
   <div class="dashboard">
-    <aside class="sidebar">
-      <div class="logo">📊 Dashboard</div>
-      <ul>
-        <li><a href="main.html" class="active">Home</a></li>
-        <li><a href="blog.html">Add Your Posts</a></li>
-        <li><a href="#">Settings</a></li>
-      </ul>
-    </aside>
+    <header class="ourheader">
+      <div class="container">
+          <div class="logo">
+              <h1><a href="#">Inkspire</a></h1>
+          </div>
+          <nav>
+              <ul class="nav-list">
+                  <li><a href="main.html">Home</a></li>
+                  <li><a href="dashboard.html">Dashboard</a></li>
+                  <li><a href="blog.html">Add Post</a></li>
+                 
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle">
+                          <i class="fa fa-user"></i> <span id="username">Guest</span>  
+                          <i class="fa fa-chevron-down"></i>
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a href="login.html" id="signup-link">SignUp</a></li>
+                          <li><a href="#" class="logout" id="logout-link" style="display: none;">Logout</a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </nav>
+      </div>
+  </header>
 
     <main>
       <div class="topbar">
-        <input type="text" placeholder="Search for anything...">
+
         <div class="date-profile">
           <span class="date" id="current-date"></span>
           <div class="profile">
@@ -53,7 +70,7 @@
           <p><b id="total-posts-card">0</b></p>
         </div>
         <div class="card">
-          <h3>Comments</h3>
+          
           <p><b id="comments">0</b></p>
         </div>
         <div class="card">
@@ -63,18 +80,16 @@
       </section>
 
       <section class="content">
-        <div class="analytics">
-          <h3>Visitors</h3>
-        </div>
+        <!-- Recent Blogs Section -->
         <div class="recent-blogs">
           <div class="blog-header">
             <h3>Recent Blogs</h3>
           </div>
-          <ul id="blogs-list">
-           
+          <ul id="blogs-list">;
           </ul>
         </div>
       </section>
+      
     </main>
   </div>
 
