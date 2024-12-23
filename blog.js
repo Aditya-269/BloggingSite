@@ -71,7 +71,7 @@ function populateEditForm() {
             document.getElementById('submitBtn').innerText = 'Update Post';
         } else {
             alert('Unauthorized access: You can only edit your own posts.');
-            window.location.href = 'main.html';
+            window.location.href = 'index.html';
         }
     } else {
         // New post - ensure form is clear
@@ -111,7 +111,7 @@ document.getElementById('postForm').addEventListener('submit', function (e) {
 
     saveBlogsToStorage(blogs);
     resetPostForm();
-    window.location.href = 'main.html';
+    window.location.href = 'index.html';
 });
 
 // Initialize the form when the page loads
