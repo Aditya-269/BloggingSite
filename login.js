@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (user) {
       setLocalStorage('currentUser', { id: user.id, username: user.username, email: user.email });
-      window.location.href = 'main.html';
+      window.location.href = 'index.html';
     } else {
       errorElements.login.textContent = 'Invalid email or password';
     }

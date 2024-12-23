@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <h1>${post.title}</h1>
             ${post.image ? `<img src="${post.image}" alt="Blog Image" style="max-width: 100%;">` : ""}
             <p>${post.body}</p>
-            <a href="main.html">Back to Blog List</a>
+            <a href="index.html">Back to Blog List</a>
         `;
     } else {
         contentContainer.innerHTML = "<p>No content found.</p>";
