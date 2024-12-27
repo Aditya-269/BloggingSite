@@ -1,47 +1,82 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Retrieve data from localStorage
-  const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
-  const currentUser = JSON.parse(localStorage.getItem('currentUser')) || { username: 'Guest', email: '' };
-  const followers = JSON.parse(localStorage.getItem('followers')) || {};
+  try {
+    // Fetch data from localStorage
+    const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+    const currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
 
-  // Display current user's username
-  document.getElementById('username').textContent = currentUser.username;
+    // Set current date
+    const currentDate = new Date().toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    document.getElementById('current-date').textContent = currentDate;
 
-  // Display total posts
-  document.getElementById('total-posts').textContent = `${blogs.length} Posts`;
-  document.getElementById('total-posts-card').textContent = blogs.length;
+    // Display current user's username
+    const usernameElement = document.getElementById('header-username');
+    const logoutLink = document.getElementById('logout-link');
+    const signupLink = document.getElementById('signup-link');
+    const loginLink = document.getElementById('login-link');
 
-  // Calculate and display total likes
-  const totalLikes = blogs.reduce((sum, blog) => sum + (blog.likes || 0), 0);
-  document.getElementById('likes').textContent = `${totalLikes} Likes`;
+    if (currentUser && currentUser.username) {
+      usernameElement.textContent = currentUser.username;
+      logoutLink.style.display = 'block'; // Show logout
+      signupLink.style.display = 'none';  // Hide sign up
+      if (loginLink) loginLink.style.display = 'none'; // Hide login if present
+    } else {
+      usernameElement.textContent = 'Guest';
+      logoutLink.style.display = 'none';  // Hide logout
+      signupLink.style.display = 'block'; // Show sign up
+      if (loginLink) loginLink.style.display = 'block'; // Show login if present
+    }
 
-  // Calculate and display total comments
-  const totalComments = blogs.reduce((sum, blog) => sum + (blog.comments?.length || 0), 0);
-  document.getElementById('comments').textContent = `${totalComments} Comments`;
+    // Log out functionality
+    if (logoutLink) {
+      logoutLink.addEventListener('click', () => {
+        localStorage.removeItem('currentUser'); // Clear current user data
+        window.location.href = 'login.html'; // Redirect to login page
+      });
+    }
 
+    // Display user name
+    document.getElementById('user-name').textContent = currentUser ? currentUser.username : 'Guest';
 
+    // Update total posts
+    const totalPostsElement = document.getElementById('total-posts');
+    const totalPostsCard = document.getElementById('total-posts-card');
+    totalPostsElement.textContent = `${blogs.length} Posts`;
+    totalPostsCard.textContent = blogs.length;
 
-  // Display the three most recent blogs in the "Recent Blogs" section
-  const blogsList = document.getElementById('blogs-list');
-  blogsList.innerHTML = ''; 
+    // Calculate and display total likes
+    const totalLikes = blogs.reduce((sum, blog) => {
+      if (blog.reactions) {
+        return (
+          sum +
+          Object.values(blog.reactions).filter(reaction => reaction === 'like').length
+        );
+      }
+      return sum;
+    }, 0);
+    document.getElementById('likes').textContent = `${totalLikes} Likes`;
 
-  blogs.slice(-3).reverse().forEach(blog => {
-    const listItem = document.createElement('li');
-    listItem.innerHTML = `
-      <a href="#">
-        <strong>${blog.title}</strong> 
-        <span style="font-size: 0.9rem; color: #555;">(${blog.comments?.length || 0} Comments)</span>
-      </a>`;
-    blogsList.appendChild(listItem);
-  });
+    // Calculate and display total comments
+    const totalComments = blogs.reduce((sum, blog) => sum + (blog.comments?.length || 0), 0);
+    document.getElementById('comments').textContent = `${totalComments} Comments`;
 
-  // Periodically update analytics data
-  setInterval(() => {
-    const updatedBlogs = JSON.parse(localStorage.getItem('blogs')) || [];
-
-    // Update posts count
-    document.getElementById('total-posts').textContent = `${updatedBlogs.length} Posts`;
-    document.getElementById('total-posts-card').textContent = updatedBlogs.length;
-
-  }, 2000);
+    // Display the three most recent blogs
+    const blogsList = document.getElementById('blogs-list');
+    blogsList.innerHTML = ''; // Clear existing content
+    blogs.slice(-3).reverse().forEach(blog => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `
+        <a href="#">
+          <strong>${blog.title}</strong>
+          <span style="font-size: 0.9rem; color: #555;">(${blog.comments?.length || 0} Comments)</span>
+        </a>`;
+      blogsList.appendChild(listItem);
+    });
+  } catch (error) {
+    console.error('Error initializing dashboard:', error);
+  }
 });

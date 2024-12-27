@@ -85,6 +85,7 @@ label {
 }
 
 input[type="text"],
+input[type="date"], /* Add date input styling */
 textarea {
   padding: 1rem;
   border: 1px solid #ddd;
@@ -97,6 +98,7 @@ textarea {
 }
 
 input[type="text"]:focus,
+input[type="date"]:focus, /* Add date input focus styling */
 textarea:focus {
   border-color: #1a73e8;
   outline: none;
@@ -146,7 +148,6 @@ button:hover {
 }
 
 /* Add slight padding and shadow to input fields and Quill editor for a cleaner look */
-input[type="text"], textarea, #blog-body {
+input[type="text"], input[type="date"], textarea, #blog-body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
-

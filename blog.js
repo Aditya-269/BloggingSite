@@ -55,7 +55,12 @@ function populateEditForm() {
             document.getElementById('title').value = post.title;
             document.getElementById('image').value = post.image;
             document.getElementById('description').value = post.description;
-            
+
+            // Populate the date field
+            if (post.date) {
+                document.getElementById('postDate').value = post.date.slice(0, 10); // Format: YYYY-MM-DD
+            }
+
             // Wait for Quill to be initialized before setting content
             const setQuillContent = () => {
                 if (quill) {
@@ -66,7 +71,7 @@ function populateEditForm() {
                 }
             };
             setQuillContent();
-            
+
             document.getElementById('editIndex').value = editIndex;
             document.getElementById('submitBtn').innerText = 'Update Post';
         } else {
@@ -87,12 +92,13 @@ document.getElementById('postForm').addEventListener('submit', function (e) {
     const title = document.getElementById('title').value.trim();
     const image = document.getElementById('image').value.trim();
     const description = document.getElementById('description').value.trim();
+    const postDate = document.getElementById('postDate').value; // Get the date input value
     const body = quill ? quill.root.innerHTML : ''; // Get content from Quill editor
     const editIndex = document.getElementById('editIndex').value;
     const userId = document.getElementById('userId').value;
 
     // Validate form inputs
-    if (!title || !description || !body || !userId) {
+    if (!title || !description || !body || !userId || !postDate) {
         alert('All fields are required. Please fill in all fields.');
         return;
     }
@@ -101,11 +107,11 @@ document.getElementById('postForm').addEventListener('submit', function (e) {
 
     if (editIndex !== '') {
         // Update existing post
-        blogs[editIndex] = { userId, title, image, description, body };
+        blogs[editIndex] = { userId, title, image, description, body, date: postDate };
         alert('Post updated successfully!');
     } else {
         // Create a new post
-        blogs.push({ userId, title, image, description, body });
+        blogs.push({ userId, title, image, description, body, date: postDate });
         alert('Post added successfully!');
     }
 
