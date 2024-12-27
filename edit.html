@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Post</title>
+    <title>Edit Post</title>
     <script src="https://kit.fontawesome.com/0c9f2a40ff.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="blog.css">
-
-    <!-- Quill.js CSS -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.snow.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
 </head>
@@ -18,33 +16,40 @@
     <div class="page-wrapper">
         <div class="content clearfix">
             <div class="main-content">
-                <h1>Add Post</h1>
-                <form id="postForm">
+                <h1>Edit Post</h1>
+                <form id="editPostForm">
+                    <!-- This input will store the index of the blog post for editing -->
                     <input type="hidden" id="editIndex" value="">
-                    <input type="hidden" id="userId" value="">
-
+                
+                    <!-- Title field -->
                     <label for="title">Title</label>
                     <input type="text" id="title" placeholder="Enter Title" required>
-
+                
+                    <!-- Image URL field -->
                     <label for="image">Image URL</label>
                     <input type="text" id="image" placeholder="Enter Image URL (optional)">
-
+                
+                    <!-- Description field -->
                     <label for="description">Description</label>
                     <textarea id="description" placeholder="Enter Short Description" required></textarea>
-
-                    <!-- New Date Input Field -->
+                
+                    <!-- Date field -->
                     <label for="postDate">Post Date</label>
                     <input type="date" id="postDate" required>
-
+                
+                    <!-- Quill editor content field -->
                     <label for="blog-body">Content</label>
-                    <div id="blog-body" style="height: 200px;"></div> <!-- Quill Editor replaces this -->
-
-                    <button type="submit" id="submitBtn">Save Post</button>
+                    <div id="blog-body" style="height: 200px;"></div>
+                
+                    <!-- Submit button -->
+                    <button type="submit" id="updateBtn">Update Post</button>
                 </form>
+                
             </div>
         </div>
     </div>
 
-    <script src="blog.js"></script>
+
+    <script type="module" src="edit.js"></script>
 </body>
 </html>

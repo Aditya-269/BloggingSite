@@ -14,6 +14,11 @@ const getBlogsFromStorage = () => JSON.parse(localStorage.getItem('blogs')) || [
 const saveBlogsToStorage = (blogs) => localStorage.setItem('blogs', JSON.stringify(blogs));
 const getCurrentUserFromStorage = () => JSON.parse(localStorage.getItem('currentUser')) || null;
 
+// Generate a unique ID
+const generateId = () => {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+};
+
 // Reset the form after submission
 function resetPostForm() {
     document.getElementById('postForm').reset();
@@ -23,102 +28,46 @@ function resetPostForm() {
     }
 }
 
-// Load existing data for editing
-function populateEditForm() {
-    const params = new URLSearchParams(window.location.search);
-    const editIndex = params.get('editIndex'); // Get the edit index from the URL
-    const currentUser = getCurrentUserFromStorage();
-
-    // Debug logs
-    console.log('Current User:', currentUser);
-    console.log('Edit Index:', editIndex);
-
-    // Redirect if user is not logged in
-    if (!currentUser) {
-        alert('User not logged in. Please log in to edit posts.');
-        window.location.href = 'login.html';
-        return;
-    }
-
-    document.getElementById('userId').value = currentUser.id; // Set user ID in hidden field
-
-    // Only populate form if we're editing (editIndex exists)
-    if (editIndex !== null) {
-        const blogs = getBlogsFromStorage();
-        const post = blogs[editIndex];
-
-        // Debug log for posts
-        console.log('Post Data:', post);
-
-        // Check if the post exists and belongs to the current user
-        if (post && post.userId === currentUser.id) {
-            document.getElementById('title').value = post.title;
-            document.getElementById('image').value = post.image;
-            document.getElementById('description').value = post.description;
-
-            // Populate the date field
-            if (post.date) {
-                document.getElementById('postDate').value = post.date.slice(0, 10); // Format: YYYY-MM-DD
-            }
-
-            // Wait for Quill to be initialized before setting content
-            const setQuillContent = () => {
-                if (quill) {
-                    quill.root.innerHTML = post.body;
-                } else {
-                    // If Quill isn't ready yet, try again in 100ms
-                    setTimeout(setQuillContent, 100);
-                }
-            };
-            setQuillContent();
-
-            document.getElementById('editIndex').value = editIndex;
-            document.getElementById('submitBtn').innerText = 'Update Post';
-        } else {
-            alert('Unauthorized access: You can only edit your own posts.');
-            window.location.href = 'index.html';
-        }
-    } else {
-        // New post - ensure form is clear
-        resetPostForm();
-        document.getElementById('submitBtn').innerText = 'Create Post';
-    }
-}
-
 // Handle post submission for adding or editing
 document.getElementById('postForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
+    const currentUser = getCurrentUserFromStorage();
+    if (!currentUser) {
+        alert('Please log in to create or edit posts.');
+        window.location.href = 'login.html';
+        return;
+    }
+
     const title = document.getElementById('title').value.trim();
     const image = document.getElementById('image').value.trim();
     const description = document.getElementById('description').value.trim();
-    const postDate = document.getElementById('postDate').value; // Get the date input value
-    const body = quill ? quill.root.innerHTML : ''; // Get content from Quill editor
-    const editIndex = document.getElementById('editIndex').value;
-    const userId = document.getElementById('userId').value;
+    const postDate = document.getElementById('postDate').value;
+    const body = quill ? quill.root.innerHTML : '';
+    const userId = currentUser.id;
 
     // Validate form inputs
-    if (!title || !description || !body || !userId || !postDate) {
-        alert('All fields are required. Please fill in all fields.');
+    if (!title || !description || !body || !postDate) {
+        alert('Please fill in all required fields.');
         return;
     }
 
     const blogs = getBlogsFromStorage();
-
-    if (editIndex !== '') {
-        // Update existing post
-        blogs[editIndex] = { userId, title, image, description, body, date: postDate };
-        alert('Post updated successfully!');
-    } else {
-        // Create a new post
-        blogs.push({ userId, title, image, description, body, date: postDate });
-        alert('Post added successfully!');
-    }
-
+    const newPost = {
+        id: generateId(),
+        userId,
+        title,
+        image,
+        description,
+        body,
+        date: postDate,
+        createdAt: new Date().toISOString()
+    };
+    
+    blogs.push(newPost);
+    
     saveBlogsToStorage(blogs);
+    alert('Post created successfully!');
     resetPostForm();
     window.location.href = 'index.html';
 });
-
-// Initialize the form when the page loads
-window.onload = populateEditForm;

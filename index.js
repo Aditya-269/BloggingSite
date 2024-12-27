@@ -196,7 +196,7 @@ function editPost(index) {
     }
 
     localStorage.setItem('editIndex', index);
-    window.location.href = 'blog.html';
+    window.location.href = 'edit.html';
 }
 
 // Function to delete a blog post
