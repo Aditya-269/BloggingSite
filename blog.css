@@ -144,7 +144,7 @@ button:hover {
   padding: 10px;  /* Added padding for better spacing */
   box-sizing: border-box;
   max-height: 400px; /* Added max-height to control overflow */
-  overflow-y: auto; /* Added to allow scrolling inside the editor */
+  overflow-y: hidden; /* Added to allow scrolling inside the editor */
 }
 
 .ql-editor {
