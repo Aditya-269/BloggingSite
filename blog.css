@@ -55,6 +55,7 @@ a:hover {
   max-width: 800px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+  position: relative;  /* Added to ensure positioning context for the Quill editor */
 }
 
 .main-content:hover {
@@ -113,6 +114,7 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 12px;
+  resize: vertical;
 }
 
 /* Button Styling */
@@ -139,12 +141,20 @@ button:hover {
 .ql-container {
   border: 1px solid #ddd;
   border-radius: 8px;
+  padding: 10px;  /* Added padding for better spacing */
+  box-sizing: border-box;
+  max-height: 400px; /* Added max-height to control overflow */
+  overflow-y: auto; /* Added to allow scrolling inside the editor */
 }
 
 .ql-editor {
   min-height: 200px;
   font-size: 1.1rem;
   color: #333;
+  padding: 12px;  /* Added padding for inner spacing */
+  overflow: auto; /* Prevent text from overflowing */
+  box-sizing: border-box; /* Include padding in the height/width calculation */
+  word-wrap: break-word; /* Ensure long words break properly */
 }
 
 /* Add slight padding and shadow to input fields and Quill editor for a cleaner look */
